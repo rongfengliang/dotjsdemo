@@ -1,0 +1,14 @@
+{
+  "name": "dotjsdemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rongfengliang/dotjsdemo.git",
+  "author": "dalongrong <1141591465@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.0"
+  },
+  "scripts": {
+    "start":"live-server"
+  }
+}
