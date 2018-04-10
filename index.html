@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://olado.github.io/doT/doT.min.js"></script>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+    <div id="app">appdemo</div>
+    <script type="text/html" id="tpl">
+        <div>
+            <a>name:{{= it.name}}</a>
+            <p>age:{{= it.age}}</p>
+            <p>hello:{{= it.sayHello() }}</p>
+            <ul>
+                {{~ it.items:project}}
+                <li>
+                        <p>age:{{= project.id}}</p>
+                        <p>name:{{= project.name}}</p>
+                        <select >
+                                {{~ it.arr:platform}}
+                                    <option {{? it.itemmatch(project,platform) }} selected{{?}} value="{{=platform.id}}">
+                                        {{=platform.text}}
+                                    </option>
+                                {{~}}
+                         </select>
+                </li>
+                {{~}}
+            </ul>
+           
+        </div>
+    </script>
+    <script>
+        $("#app").html(doT.template($("#tpl").html())({
+            name:'stringParams1',
+            stringParams1:'stringParams1_value',
+            stringParams2:1,
+            items:[
+                {
+                    id:1,
+                    name:"val1"
+                },
+                {
+                    id:2,
+                    name:"val2" 
+                }
+            ],
+            arr:[{id:0,text:'val1'},{id:1,text:'val2'}],
+            sayHello:function () {
+                return this.name
+            },
+            itemmatch:function(itemmatch,item){
+                    if(itemmatch.name==item.text){
+                        return true
+                    }
+                    return false
+            }
+
+        }));
+    </script>
+</body>
+</html>
